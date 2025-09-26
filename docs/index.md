@@ -62,7 +62,7 @@
 
 # Diagrama de Classes
 
-![Diagrama de Classes](../diagrama_de_classes.png)
+![Diagrama de Classes](diagrama_de_classes.png)
 
 # Diagrama de Estados
 
