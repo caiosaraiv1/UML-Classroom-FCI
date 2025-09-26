@@ -62,7 +62,7 @@
 
 # Diagrama de Classes
 
-*&lt;Diagrama de relacionamento entre classes para os seus atributos e operações&gt;*
+![Diagrama de Classes](../diagrama_de_classes.png)
 
 # Diagrama de Estados
 
