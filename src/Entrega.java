@@ -1,13 +1,13 @@
 public class Entrega {
 	
     private String destino;
-    private double pesoDoPacote;
+    private Pacote pacote;
     private Cliente cliente;
     private Drone drone;
     
-	public Entrega(String destino, double pesoDoPacote, Cliente cliente, Drone drone) {
+	public Entrega(String destino, Pacote pacote, Cliente cliente, Drone drone) {
 		this.destino = destino;
-		this.pesoDoPacote = pesoDoPacote;
+		this.pacote = pacote;
 		this.cliente = cliente;
 		this.drone = drone;
 	}
@@ -20,12 +20,12 @@ public class Entrega {
 		this.destino = destino;
 	}
 
-	public double getPesoDoPacote() {
-		return pesoDoPacote;
+	public Pacote getPacote() {
+		return pacote;
 	}
 
-	public void setPesoDoPacote(double pesoDoPacote) {
-		this.pesoDoPacote = pesoDoPacote;
+	public void setPesoDoPacote(Pacote pacote) {
+		this.pacote = pacote;
 	}
 
 	public Cliente getCliente() {
@@ -46,7 +46,8 @@ public class Entrega {
 
 	@Override
 	public String toString() {
-		return "Entrega [destino=" + destino + ", pesoDoPacote=" + pesoDoPacote + ", cliente=" + cliente + ", drone="
-				+ drone + "]";
+		return "Entrega [destino=" + destino + ", pacote=" + pacote + ", cliente=" + cliente + ", drone=" + drone + "]";
 	}
+
+	
 }

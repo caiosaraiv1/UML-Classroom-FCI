@@ -43,6 +43,10 @@ public class Drone {
 	public void setDisponivel(boolean disponivel) {
 		this.disponivel = disponivel;
 	}
+	
+	public boolean podeCarregar(double pesoDoPacote) {
+		return this.capacidadeDeCarga <= pesoDoPacote;
+	}
 
 	@Override
 	public String toString() {
