@@ -53,6 +53,10 @@ Uma startup deseja oferecer entregas rápidas de pequenos pacotes usando drones 
 
 ![Diagrama de Classes](diagramaDeClasses.png)
 
+# Integração de Modelos 
+
+![Integração de Modelos](bancoDeDados.png)
+
 # Diagrama de Estados
 
 *&lt;Diagrama para permite modelar o comportamento interno de um determinado objeto, subsistema ou sistema global&gt;*
