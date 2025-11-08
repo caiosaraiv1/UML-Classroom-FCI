@@ -21,8 +21,11 @@ public class Pacote {
 	}
 
 	public void setPeso(double peso) {
-		this.peso = peso;
-	}
+        if (peso <= 0) {
+            throw new IllegalArgumentException("O peso deve ser positivo.");
+        }
+        this.peso = peso;
+    }
 
 	@Override
 	public String toString() {

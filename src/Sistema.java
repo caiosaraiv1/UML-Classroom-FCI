@@ -1,46 +1,56 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class Sistema {
-	
-	private List<Cliente> clientes;
-	private GerenciadorDeDrones gerenciadorDeDrones;
-	private HistoricoDeEntregas historicoDeEntregas;
-	
-	public Sistema() {
-		this.clientes = new ArrayList<>();
-	}
+    
+    private IClienteRepository clienteRepository;
+    private IGerenciadorDeDrones gerenciadorDeDrones;
+    private IHistoricoDeEntregas historicoDeEntregas;
+    
+    public Sistema(IClienteRepository clienteRepository, 
+                   IGerenciadorDeDrones gerenciadorDeDrones, 
+                   IHistoricoDeEntregas historicoDeEntregas) {
+                       
+        this.clienteRepository = clienteRepository;
+        this.gerenciadorDeDrones = gerenciadorDeDrones;
+        this.historicoDeEntregas = historicoDeEntregas;
+    }
 
-	public List<Cliente> getClientes() {
-		return clientes;
-	}
+    public List<Cliente> getClientes() {
+        return clienteRepository.getClientes();
+    }
 
-	public void setClientes(List<Cliente> clientes) {
-		this.clientes = clientes;
-	}
+    public IGerenciadorDeDrones getGerenciadorDeDrones() {
+        return gerenciadorDeDrones;
+    }
 
-	public GerenciadorDeDrones getGerenciadorDeDrones() {
-		return gerenciadorDeDrones;
-	}
-
-	public void setGerenciadorDeDrones(GerenciadorDeDrones gerenciadorDeDrones) {
-		this.gerenciadorDeDrones = gerenciadorDeDrones;
-	}
-
-	public HistoricoDeEntregas getHistoricoDeEntregas() {
-		return historicoDeEntregas;
-	}
-
-	public void setHistoricoDeEntregas(HistoricoDeEntregas historicoDeEntregas) {
-		this.historicoDeEntregas = historicoDeEntregas;
-	}
-	
-	public void cadastrarCliente(Cliente cliente) {
-		this.clientes.add(cliente);
-	}
-	
-	/* TODO
-	public String solicitarEntrega();
-	*/
-
+    public IHistoricoDeEntregas getHistoricoDeEntregas() {
+        return historicoDeEntregas;
+    }
+    
+    public void cadastrarCliente(Cliente cliente) {
+        this.clienteRepository.cadastrar(cliente);
+    }
+    
+    
+    public String solicitarEntrega(Cliente cliente, String destino, double pesoDoPacote) {
+        
+        System.out.println("Buscando drone para " + pesoDoPacote + "kg...");
+        Drone drone = gerenciadorDeDrones.encontrarDrone(pesoDoPacote);
+        
+        if (drone == null) {
+            System.out.println("Nenhum drone disponível.");
+            return "Falha: Nenhum drone disponível ou adequado.";
+        }
+        
+        Pacote pacote = new Pacote(1, pesoDoPacote); 
+        Entrega novaEntrega = new Entrega(destino, pacote, cliente, drone);
+        
+        System.out.println("Atribuindo entrega ao Drone " + drone.getId());
+        drone.setStatus(StatusDrone.EM_ENTREGA);
+        
+        historicoDeEntregas.registrarEntrega(novaEntrega);
+        
+        System.out.println("Entrega registrada no histórico.");
+        return "Sucesso: Entrega agendada com Drone " + drone.getId();
+    }
 }

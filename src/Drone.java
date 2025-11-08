@@ -3,13 +3,13 @@ public class Drone {
     private String id;
     private int statusDaBateria;
     private double capacidadeDeCarga;
-    private boolean disponivel;
+    private StatusDrone status;
     
-	public Drone(String id, int statusDaBateria, double capacidadeDeCarga, boolean disponivel) {
+	public Drone(String id, int statusDaBateria, double capacidadeDeCarga, StatusDrone status) {
 		this.id = id;
 		this.statusDaBateria = statusDaBateria;
 		this.capacidadeDeCarga = capacidadeDeCarga;
-		this.disponivel = disponivel;
+		this.status = status; 
 	}
 
 	public String getId() {
@@ -25,6 +25,9 @@ public class Drone {
 	}
 
 	public void setStatusDaBateria(int statusDaBateria) {
+        if (statusDaBateria < 0 || statusDaBateria > 100) {
+            throw new IllegalArgumentException("Status da bateria deve ser entre 0 e 100.");
+        }
 		this.statusDaBateria = statusDaBateria;
 	}
 
@@ -37,20 +40,24 @@ public class Drone {
 	}
 
 	public boolean isDisponivel() {
-		return disponivel;
+		return this.status == StatusDrone.DISPONIVEL;
 	}
 
-	public void setDisponivel(boolean disponivel) {
-		this.disponivel = disponivel;
+	public StatusDrone getStatus() {
+		return status;
+	}
+
+	public void setStatus(StatusDrone status) {
+		this.status = status;
 	}
 	
 	public boolean podeCarregar(double pesoDoPacote) {
-		return this.capacidadeDeCarga <= pesoDoPacote;
-	}
+        return this.capacidadeDeCarga >= pesoDoPacote;
+    }
 
 	@Override
 	public String toString() {
 		return "Drone [id=" + id + ", statusDaBateria=" + statusDaBateria + ", capacidadeDeCarga=" + capacidadeDeCarga
-				+ ", disponivel=" + disponivel + "]";
+				+ ", status=" + status + "]"; // Campo 'disponivel' atualizado para 'status'
 	} 
 }
