@@ -5,7 +5,7 @@ public class Pacote {
     
 	public Pacote(int iD, double peso) {
 		this.ID = iD;
-		this.peso = peso;
+		setPeso(peso);
 	}
 
 	public int getID() {
