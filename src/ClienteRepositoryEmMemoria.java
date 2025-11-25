@@ -11,6 +11,10 @@ public class ClienteRepositoryEmMemoria implements IClienteRepository {
 
     @Override
     public void cadastrar(Cliente cliente) {
+        //Verificação para ter certeza que o cliente exista (não é nulo)
+        if (cliente == null) {
+            throw new IllegalArgumentException("Cliente não pode ser nulo para cadastro.");
+        }
         this.clientes.add(cliente);
     }
 

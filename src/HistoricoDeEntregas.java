@@ -19,8 +19,13 @@ public class HistoricoDeEntregas implements IHistoricoDeEntregas {
         this.registros = registros;
     }
     
-    @Override
+@Override
     public void registrarEntrega(Entrega entrega) {
+        // Verifica se a entrega é nulla
+        if (entrega == null) {
+            throw new IllegalArgumentException("A entrega a ser registrada não pode ser nula.");
+        }
+        
         RegistroDeEntrega novoRegistro = new RegistroDeEntrega(entrega);
         this.registros.add(novoRegistro);
     }

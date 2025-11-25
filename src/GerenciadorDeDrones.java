@@ -17,8 +17,12 @@ public class GerenciadorDeDrones implements IGerenciadorDeDrones {
         this.frotaDeDrones = frotaDeDrones;
     }
     
-    @Override
+@Override
     public void adicionarDrones(Drone drone) {
+        // verifica se o drone a ser aadicionado não é nulo
+        if (drone == null) {
+            throw new IllegalArgumentException("Drone a ser adicionado não pode ser nulo.");
+        }
         this.frotaDeDrones.add(drone);
     }
     

@@ -6,7 +6,8 @@ public class Entrega {
     private Drone drone;
     
 	public Entrega(String destino, Pacote pacote, Cliente cliente, Drone drone) {
-		this.destino = destino;
+		//setter para validar o destino na criação
+		setDestino(destino);
 		this.pacote = pacote;
 		this.cliente = cliente;
 		this.drone = drone;
@@ -17,7 +18,11 @@ public class Entrega {
 	}
 
 	public void setDestino(String destino) {
-		this.destino = destino;
+		// destino não pode ser nulo ou vazio
+		if (destino == null || destino.trim().isEmpty()) {
+			throw new IllegalArgumentException("Destino inválido: não pode ser vazio.");
+		}
+		this.destino = destino.trim(); // ADICIONADO: Remove espaços em branco
 	}
 
 	public Pacote getPacote() {
@@ -43,6 +48,10 @@ public class Entrega {
 	public void setDrone(Drone drone) {
 		this.drone = drone;
 	}
+
+	public void setPacote(Pacote pacote) {
+    	this.pacote = pacote;
+}
 
 	@Override
 	public String toString() {
