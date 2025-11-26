@@ -26,7 +26,7 @@ public class Drone {
 
 	public void setStatusDaBateria(int statusDaBateria) {
         if (statusDaBateria < 0 || statusDaBateria > 100) {
-            throw new IllegalArgumentException("Status da bateria deve ser entre 0 e 100.");
+            throw new IllegalArgumentException("Bateria inválida.");
         }
 		this.statusDaBateria = statusDaBateria;
 	}

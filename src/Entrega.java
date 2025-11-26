@@ -1,5 +1,6 @@
 public class Entrega {
 	
+	private int id;
     private String destino;
     private Pacote pacote;
     private Cliente cliente;
@@ -11,6 +12,14 @@ public class Entrega {
 		this.pacote = pacote;
 		this.cliente = cliente;
 		this.drone = drone;
+	}
+	
+	public int getId() {
+	    return id;
+	}
+
+	public void setId(int id) {
+	    this.id = id;
 	}
 
 	public String getDestino() {
@@ -24,14 +33,14 @@ public class Entrega {
 		}
 		this.destino = destino.trim(); // ADICIONADO: Remove espaços em branco
 	}
-
+	
 	public Pacote getPacote() {
 		return pacote;
 	}
 
-	public void setPesoDoPacote(Pacote pacote) {
-		this.pacote = pacote;
-	}
+	public void setPacote(Pacote pacote) {
+    	this.pacote = pacote;
+    }
 
 	public Cliente getCliente() {
 		return cliente;
@@ -48,15 +57,5 @@ public class Entrega {
 	public void setDrone(Drone drone) {
 		this.drone = drone;
 	}
-
-	public void setPacote(Pacote pacote) {
-    	this.pacote = pacote;
-}
-
-	@Override
-	public String toString() {
-		return "Entrega [destino=" + destino + ", pacote=" + pacote + ", cliente=" + cliente + ", drone=" + drone + "]";
-	}
-
 	
 }
